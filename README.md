@@ -1,5 +1,7 @@
 # apk-interceptor
 
+[![Build Check](https://github.com/sterrasec/apk-interceptor/actions/workflows/build.yml/badge.svg)](https://github.com/sterrasec/apk-interceptor/actions/workflows/build.yml)
+
 **Android deeplink, Intent, and WebView bridge assessment helper**
 
 apk-interceptor is a portable Android testing APK for authorized application
@@ -33,6 +35,13 @@ apk-interceptor is useful for these assessment tasks:
 | Exported Activity exposure | Sender | Whether an exported Activity can be launched directly by another app |
 | WebView bridge exposure via `content://` | Payload + Sender | Whether a local HTML payload can reach a WebView JavaScript bridge |
 | Local payload syntax check | Payload | Whether your HTML/JS payload runs in the self-test WebView |
+
+Detailed vulnerability walkthroughs:
+
+- [Custom URI Scheme Hijacking](docs/vulnerabilities/custom-uri-scheme-hijacking.md)
+- [Deeplink Open Redirect](docs/vulnerabilities/deeplink-open-redirect.md)
+- [Exported Activity With Untrusted Intent Data](docs/vulnerabilities/exported-activity-intent-data.md)
+- [WebView JavaScript Bridge Exposure Via `content://`](docs/vulnerabilities/webview-js-bridge-content-uri.md)
 
 The app keeps an in-memory assessment log for sent Intents, received deeplinks,
 bridge callbacks, JavaScript results, and errors. Logs disappear when the app
@@ -127,7 +136,7 @@ dialog again.
 The Sender tab still shows a persistent warning because it can send Intents to
 other apps.
 
-![Authorized use dialog](docs/screenshots/authorized-use-dialog.png)
+<img src="docs/screenshots/authorized-use-dialog.png" alt="Authorized use dialog" width="320">
 
 ## Screenshots
 
