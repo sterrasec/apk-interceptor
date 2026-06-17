@@ -1,0 +1,10 @@
+<resources>
+    <style name="Theme.ApkInterceptor" parent="android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowActionModeOverlay">true</item>
+    </style>
+
+    <!-- Used by InterceptActivity, which only logs the deeplink and immediately
+         forwards to MainActivity. A translucent theme avoids a blank window flash. -->
+    <style name="Theme.ApkInterceptor.Transparent" parent="android:style/Theme.Translucent.NoTitleBar" />
+</resources>
