@@ -18,11 +18,24 @@ The tool is intentionally constrained:
 - It serves only one local `content://` payload file
 - It registers one custom URI scheme fixed at build time
 
-## Authorized Use Only
+## Motivation
 
-Use this tool only for applications you own, applications you are contracted to
-assess, internal training environments, and security labs. Do not use it
-against third-party applications without explicit authorization.
+During Android application security assessments, many findings from static
+analysis still need a small on-device proof of concept before they can be
+confirmed: registering a custom URI scheme, sending an explicit Intent, serving
+a local `content://` payload, or checking whether JavaScript can reach a WebView
+bridge.
+
+Building a new throwaway test app for each case is repetitive and error-prone.
+Small differences in manifest entries, authorities, URI grants, package names,
+or Intent construction can slow down verification and make results harder to
+reproduce.
+
+apk-interceptor was created to make that confirmation step repeatable. Instead
+of writing a new PoC APK for every assessment, you build this tool with the
+authorized scheme or application ID you need, run the test on-device, and keep
+the workflow constrained by design: no INTERNET permission, no external data
+transmission, no shell execution, and no root dependency.
 
 ## What You Can Test
 
