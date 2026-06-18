@@ -142,7 +142,7 @@ other apps.
 
 | Sender | Payload | Interceptor |
 | --- | --- | --- |
-| ![Sender tab](docs/screenshots/sender-tab.png) | ![Payload tab](docs/screenshots/payload-tab.png) | ![Interceptor tab](docs/screenshots/interceptor-tab.png) |
+| <img src="docs/screenshots/sender-tab.png" alt="Sender tab" width="260"> | <img src="docs/screenshots/payload-tab.png" alt="Payload tab" width="260"> | <img src="docs/screenshots/interceptor-tab.png" alt="Interceptor tab" width="260"> |
 
 ## App Modules
 
