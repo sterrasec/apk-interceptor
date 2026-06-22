@@ -81,10 +81,10 @@ Where it sits next to the usual Android tooling:
 
 The two areas where apk-interceptor has the clearest edge over the alternatives:
 
-- **Scheme-hijack evidence** — acting as the second app that actually registers
+- **Scheme-hijack evidence**: acting as the second app that actually registers
   the scheme and logging every received parameter, which `adb`/static analysis
   cannot show.
-- **`content://` → WebView bridge verification** — a non-exported, single-file
+- **`content://` → WebView bridge verification**: a non-exported, single-file
   provider whose payload is delivered only through a temporary Intent read grant,
   plus a local self-test WebView to validate payload syntax first.
 
@@ -95,14 +95,14 @@ most important thing to understand before using it:
 
 | Action | Module | Custom scheme needed at build time? |
 | --- | --- | --- |
-| **Send** an Intent or deeplink to another app | Sender | No — type any URI, package, or Activity at runtime |
-| **Intercept** (receive) a deeplink for a custom scheme | Interceptor | Yes — the scheme is fixed into the APK at build time |
+| **Send** an Intent or deeplink to another app | Sender | No, type any URI, package, or Activity at runtime |
+| **Intercept** (receive) a deeplink for a custom scheme | Interceptor | Yes, the scheme is fixed into the APK at build time |
 
 To *send* a crafted deeplink to the assessed app, you do not need to rebuild:
 use the Sender tab's **Implicit Deeplink** mode and type any URI.
 
-To *intercept* a deeplink — that is, to make Android route a custom scheme to
-apk-interceptor so you can observe a possible scheme-hijack — you must build the
+To *intercept* a deeplink, that is, to make Android route a custom scheme to
+apk-interceptor so you can observe a possible scheme-hijack, you must build the
 APK with that scheme via `--scheme`. The scheme is fixed at build time on
 purpose (a design guardrail); apk-interceptor never registers arbitrary schemes
 at runtime. If you change the scheme you are assessing, rebuild and reinstall.
@@ -183,7 +183,7 @@ Basic workflow:
 
 About **Send Test Deeplink**: it always sends `<scheme>://test?<your params>`
 with a fixed `test` host, so it is meant for confirming that apk-interceptor
-receives and logs the scheme — not for driving the assessed app's specific
+receives and logs the scheme, not for driving the assessed app's specific
 deeplink routes. To send a crafted deeplink that matches the assessed app's
 required host or path, use the Sender tab's **Implicit Deeplink** mode instead.
 
@@ -220,7 +220,7 @@ Fields and controls:
 - **Package name** for explicit Activity mode
 - **Activity class** for explicit Activity mode
 - **Attach content:// URI** to set the local payload URI as Intent data
-  (shown in **Explicit Activity** mode only — see note below)
+  (shown in **Explicit Activity** mode only; see note below)
 - **FLAG_GRANT_READ_URI_PERMISSION** to grant read access to the attached
   payload URI
 - **Send Intent**
@@ -253,7 +253,7 @@ Notes:
 - `PayloadProvider` is not exported. The assessed app can read the attached
   `content://` payload only because the Intent grants it temporary read access
   via **FLAG_GRANT_READ_URI_PERMISSION**. Keep that flag enabled, and deliver
-  the URI through the Intent — a `content://` URI opened any other way will not
+  the URI through the Intent. A `content://` URI opened any other way will not
   be readable by another app.
 
 ### Payload
@@ -477,7 +477,7 @@ command confirms the manifest intent-filter and resolver behavior.
 
 ## Tests
 
-Unit tests run on the JVM with Robolectric — no device or emulator is required.
+Unit tests run on the JVM with Robolectric, so no device or emulator is required.
 They cover `PayloadProvider`, including the path-whitelisting and traversal
 checks that keep the provider from serving anything other than the single
 `current.html` payload.
